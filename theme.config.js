@@ -1,9 +1,10 @@
 const YEAR = new Date().getFullYear()
+import { FiTwitter, FiInstagram, FiGithub, FiMail } from 'react-icons/fi'
 
 export default {
   footer: (
     <small style={{ display: 'block', marginTop: '8rem' }}>
-      <time>{YEAR}</time> © Your Name.
+      <time>{YEAR}</time> © Carlos Silva Abreu
       <a href="/feed.xml">RSS</a>
       <style jsx>{`
         a {
