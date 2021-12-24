@@ -63,3 +63,11 @@ img.next-image {
 .nav-line .nav-link {
   color: #69778c;
 }
+
+.socialLinks {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: end;
+  gap: 3rem;
+}
