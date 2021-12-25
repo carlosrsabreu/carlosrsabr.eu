@@ -69,5 +69,6 @@ img.next-image {
   flex-direction: row;
   justify-content: center;
   align-items: end;
+  -webkit-align-items: baseline;
   gap: 3rem;
 }
