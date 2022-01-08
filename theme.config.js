@@ -1,5 +1,4 @@
 const YEAR = new Date().getFullYear()
-import { FiTwitter, FiInstagram, FiGithub, FiMail } from 'react-icons/fi'
 
 export default {
   footer: (

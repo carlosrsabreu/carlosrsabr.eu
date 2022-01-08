@@ -1,0 +1,158 @@
+---
+title: Shell Scripting - Intro
+date: 2022/01/08
+description: Intro to linux shell scripting
+tag: shell, scripting
+author: You
+---
+
+# Shell Scripting - Intro
+
+## What is a shell script?
+
+A shell script is text file that contains a series of commands. This means that any work you can do on the command line can be automated by a shell script.
+
+Every shell script file has the extension `*.sh`, and you can create it using an editor text - _nano_ or _vim_, for example (or if you want to keep it simple at first, simply use _VS Code_ or other application).
+
+## First steps
+
+Imagine that you want to create the first shell scripting file. Making sure you have _nano_ installed, let's run the following command to start editing the file -> `nano day1.sh`:
+
+```bash
+#!/bin/bash
+echo "The first steps into shell scripting"
+```
+
+**Note:** you will want to start each shell script with a shebang (`#!`) followed up by the path to an interpreter (`/bin/bash`), that is what determines what program executes the commands listed in the file. Otherwise, the script will be executred using the current shell.
+
+After saving it, run `chmod +x day1.sh` to make sure you have permissions to execute the program.
+
+Then, simply run `./day1.sh` and you'll get in the console the phrase above! Right, you just executed a script :)
+
+Let's dive into more details, starting with simple commands.
+
+## Simple commands
+
+| **Type**                 | **Description**                     | **Notes**                                                    |
+| ------------------------ | ----------------------------------- | ------------------------------------------------------------ |
+| `cat <file>`             | Short for concatenate               | By default it displays the contents of files to the terminal |
+| `chmod <options> <file>` | Short for change mode               | You can change the file permissions using this command       |
+| `cd <path>`              | Short for change directory          | Used to navigate throughout your directory                   |
+| `pwd`                    | Short for present working directory | Get the present working directory's path                     |
+| `type <command>`         | Get shell built in command          | Indicates if the given command is a shell built in or not    |
+| `echo <string>`          | Print in console what you wrote     | Can be seen as the `console.log('')` of shell                |
+| `su`                     | Short for super user                | Changes the current account to the system root account       |
+| `sudo`                   | Short for super user do             | Executes an action as the system root account                |
+
+## Using variables
+
+Let's now start creating a second file to start manipultaing with variables, running this command -> `nano day2.sh` :
+
+```bash
+#!/bin/bash
+SKILL="shell scripting"
+echo "I'm getting better at ${SKILL}! Yeahhh!"
+```
+
+After running it, you'll check that the variable has replaced by the text, getting the following message:
+
+```bash
+"I'm getting better at shell scripting! Yeahhh!"
+```
+
+Very simple, right? Note that you don't need to specify it's type, you simply need to assign the value to the variable. It's very important to know that there are **no spaces around the equal sign**, otherwise you'll get an error.
+
+### Variable considerations
+
+- Variable names can contain letters, digits and underscores. However, variables can only start with letters or underscores.
+
+  - Example of valid variables:
+    - `SKILL`
+    - `SKILL5`
+    - `_SKILL`
+  - Example of invalid variables:
+
+    - `1SKILL`
+    - `A-SKILL`
+    - `E@VAR`
+
+- By convention, and since they are case sensitive, variable names are in UPPERCASE. However, they can be also written in lowercase, camelCase, PascalCase or snake_case, **but not** in kebab-case.
+
+- To reassign the value of a variable, just write it again with the desired value:
+  ```bash
+  #!/bin/bash
+  SKILL="shell scripting"
+  echo "I'm getting better at ${SKILL}! Yeahhh!"
+  SKILL="variable reassignment"
+  echo "I'm getting better at ${SKILL}! Yeahhh!"
+  ```
+
+## Adding comments
+
+To write a comment in a shell scripting file, just write a `#` with the desired comment. When executed, the script will ignore this line of code -the shebang is the only exception.
+
+```bash
+#!/bin/bash
+
+# The following line will print a string
+echo "Just print this line!"
+```
+
+Don't forget to use blank lines to improve code readability.
+
+## Writing simple scripts
+
+Imagine you want a script that prints some information about the system. That's what we'll do in the following script. Also, you'll learn some more commands.
+
+```bash
+#!/bin/bash
+
+# This script displays information about the system on which it is executed.
+
+# Tell the user the script is starting.
+echo "Starting the script file."
+
+# Display the hostname of the system.
+hostname
+
+# Display the current date and time when this information was collected.
+date
+
+# Display the kernel release followes by the architecture.
+uname -r
+uname -m
+
+# Display hte disk usage in a human readable format.
+df -h
+
+# End the script by letting the user know that it's done.
+echo "End of the script file."
+```
+
+## `IF` statement
+
+Let's learn how to execute a `if` statement in a script file. This one will output if you are the root user or not. Let's call it `is-root-user.sh`.
+
+```bash
+#!/bin/bash
+
+# Determine if the user executing this script is the root user or not.
+
+# Display the UID
+echo "Your UID is ${UID}."
+
+# Display if the user is the root user or not.
+# Zero indicates that user is root in UNIX systems.
+# Spaces in if statements are important!
+if [[ "${UID}" -eq 0 ]]
+then
+  echo "You are root."
+else
+  echo "You are not root."
+fi
+
+```
+
+And that's it! Hope you enjoy it!
+
+This article was written based on this <a href="https://www.udemy.com/course/linux-shell-scripting-free" target="_blank">crash course</a> by Jason Cannon.
