@@ -8,7 +8,7 @@ author: You
 
 # A music dystopia
 
-Throughout the years, I convinced myself that my favourite expression of art is music, without any doubt. Nobody knows the first song we ever listen to, but we might agree that music is an intrinsic part of our everyday. I get used to listening to music when I drive, when I craft code or, among other moments, when I'm relaxed and with a beer in my hand. I play also acoustic guitar since November 2015 with [FATUM](https://open.spotify.com/artist/7w0DQsi7NPnksUEo0mpGro?si=qwaRn-8QT0S99sKg_QON-g).
+Throughout the years, I convinced myself that my favourite expression of art is music, without any doubt. Nobody knows the first song we ever listen to, but we might agree that music is an intrinsic part of our everyday. I get used to listening to music when I drive, when I craft code or, among other moments, when I'm relaxed and with a beer in my hand. I play also acoustic guitar since December 2015 with [FATUM](https://open.spotify.com/artist/7w0DQsi7NPnksUEo0mpGro?si=qwaRn-8QT0S99sKg_QON-g).
 
 Music is the art, among the others, that we mainly appreciate through the ears (I should not disconsider the ones who feel the music through the vibrations) and also the one that can be integrated into other expressions of art, like cinema.
 
