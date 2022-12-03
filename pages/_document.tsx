@@ -9,7 +9,8 @@ class MyDocument extends Document {
   render() {
     const meta = {
       title: 'Carlos Silva Abreu',
-      description: 'A simple website that describes one programmer.',
+      description:
+        "Carlos is a Blockchain enthusiast and Typescript adventurer who's currently working as a frontend developer at Yacooba, a shared economy community platform for event promoters and travellers using blockchain technology.",
       image: 'https://avatars.githubusercontent.com/u/18048652'
     }
 
