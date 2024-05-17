@@ -1,0 +1,125 @@
+---
+title: Next.js with React Testing Library, Jest & Typescript
+date: 2024/05/18
+description: How to add Jest with React Testing Library to a Next.js project
+tag: unit testing, web development
+author: You
+---
+
+# Next.js with React Testing Library, Jest & Typescript
+
+## Introduction
+
+Adding a unit testing framework to an existing project can take some time, especially if it's your first time working with it. Unit testing involves evaluating the smallest parts of your code to ensure they work correctly. This practice is essential for maintaining code quality and is a crucial aspect of software development. It's best to develop software in small, functional units and create a corresponding unit test for each one.
+
+Jest is a popular choice for unit testing because it's easy to use and has powerful features. Developed by Facebook, Jest requires minimal configuration, making it quick to set up. It offers built-in assertions, mocking capabilities, snapshot testing, and parallel test execution, which makes testing efficient. With strong community support and regular updates, Jest remains a reliable tool for JavaScript testing.
+
+If you're using the Next.js framework, let's get started with integrating Jest!
+
+## Configuration
+
+In your existing project (or, if you don't have one, you can use the command `npx create-next-app@latest`), start by installing the necessary dependencies:
+
+`npm i -D @testing-library/jest-dom @testing-library/react @testing-library/user-event jest jest-environment-jsdom ts-jest`
+
+After installing the dependencies, add a test script to the `package.json` file:
+
+```json
+{
+  "scripts": {
+    "test": "jest"
+  }
+}
+```
+
+Next, create a `jest.config.ts` file in your project's root directory with the following content:
+
+```typescript
+import nextJest from 'next/jest'
+
+const createJestConfig = nextJest({
+  // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
+  dir: './'
+})
+
+// Add any custom config to be passed to Jest
+/** @type {import('jest').Config} */
+const config = {
+  // Add more setup options before each test is run
+  preset: 'ts-jest',
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+  clearMocks: true,
+  testEnvironment: 'jest-environment-jsdom',
+  transform: { '^.+\\.(js|jsx|ts|tsx)$': 'ts-jest' },
+  // Edit the following options as needed
+  testMatch: ['**/components/**/?(*.)+(spec|test).[tj]s?(x)'],
+  moduleNameMapper: { '^@/(.*)$': '<rootDir>/src/$1' }
+}
+
+// createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
+module.exports = createJestConfig(config)
+```
+
+Then, create a `jest.setup.ts` file in your project's root directory with the following content:
+
+```typescript
+import '@testing-library/jest-dom/extend-expect'
+```
+
+If you're using ESLint, add some configuration to help during development by installing the following dependencies:
+
+`npm i -D eslint-plugin-jest-dom eslint-plugin-testing-library`
+
+Then, update your `.eslintrc.json` file:
+
+```json
+{
+  "extends": ["plugin:testing-library/react", "plugin:jest-dom/recommended"]
+}
+```
+
+Now you're ready to start writing your unit tests!
+
+## Writing unit tests
+
+Let's create a simple `Button.tsx` component:
+
+```typescript
+import { forwardRef } from 'react'
+
+type ButtonProps = {
+  label: string
+  onClick?: () => void
+  disabled?: boolean
+  type?: 'submit' | 'reset' | 'button'
+}
+
+type ButtonRef = HTMLButtonElement
+
+export const Button = forwardRef<ButtonRef, ButtonProps>((props, ref) => {
+  const { disabled = false, label, onClick, type = 'button' } = props
+
+  return (
+    <button ref={ref} type={type} onClick={onClick} disabled={disabled}>
+      {label}
+    </button>
+  )
+})
+
+Button.displayName = 'Button'
+```
+
+And then, create a simple test for it:
+
+```typescript
+import { render, screen } from '@testing-library/react'
+import { Button } from './Button'
+
+test('renders default button with default args', () => {
+  render(<Button label="Button Label" />)
+  const buttonElement = screen.getByText(/Button Label/i)
+  expect(buttonElement).not.toBeNull()
+})
+```
+
+And that's a wrap! You can check the official information [here](https://nextjs.org/docs/app/building-your-application/testing/jest).
