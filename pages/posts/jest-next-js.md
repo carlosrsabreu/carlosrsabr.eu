@@ -24,7 +24,7 @@ In your existing project (or, if you don't have one, you can use the command `np
 
 After installing the dependencies, add a test script to the `package.json` file:
 
-```json
+```
 {
   "scripts": {
     "test": "jest"
@@ -34,7 +34,7 @@ After installing the dependencies, add a test script to the `package.json` file:
 
 Next, create a `jest.config.ts` file in your project's root directory with the following content:
 
-```typescript
+```
 import nextJest from 'next/jest'
 
 const createJestConfig = nextJest({
@@ -62,7 +62,7 @@ module.exports = createJestConfig(config)
 
 Then, create a `jest.setup.ts` file in your project's root directory with the following content:
 
-```typescript
+```
 import '@testing-library/jest-dom/extend-expect'
 ```
 
@@ -72,7 +72,7 @@ If you're using ESLint, add some configuration to help during development by ins
 
 Then, update your `.eslintrc.json` file:
 
-```json
+```
 {
   "extends": ["plugin:testing-library/react", "plugin:jest-dom/recommended"]
 }
@@ -84,7 +84,7 @@ Now you're ready to start writing your unit tests!
 
 Let's create a simple `Button.tsx` component:
 
-```typescript
+```
 import { forwardRef } from 'react'
 
 type ButtonProps = {
@@ -111,7 +111,7 @@ Button.displayName = 'Button'
 
 And then, create a simple test for it:
 
-```typescript
+```
 import { render, screen } from '@testing-library/react'
 import { Button } from './Button'
 
