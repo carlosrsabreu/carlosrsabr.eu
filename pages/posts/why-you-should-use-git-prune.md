@@ -74,7 +74,7 @@ for repo in /path/to/folder/*/.git; do
 done
 ```
 
-Now, if you want to prune every time you pull and avoid this routine task, do `git config --global fetch.prune true` so that it cleans up deleted branches all the time you pull.
+To automate pruning with every pull and avoid manual execution, run `git config --global fetch.prune true`. This ensures that deleted branches are cleaned up every time you pull.
 
 If you'd like to know more about shell scripting, you can read more [here](/posts/shell-scripting-basics)
 
@@ -84,6 +84,6 @@ Using `git fetch --prune` is a simple yet effective way to keep your repos clean
 
 If you regularly work with Git, consider making `git fetch --prune` a part of your workflow — you’ll appreciate the cleaner, more organized experience.
 
-**Important note**: do not forget to clean some `node_modules` folders on older projects!
+**Important note**: do not forget to clean some `node_modules` folders on older projects, as they can easily took several megabytes!
 
 And that's it! Hope you enjoy it!
