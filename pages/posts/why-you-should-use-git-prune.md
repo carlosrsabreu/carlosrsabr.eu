@@ -1,6 +1,6 @@
 ---
 title: Why you should use `git fetch --prune`
-date: 2025/02/12
+date: 2025/02/20
 description: Advantages and disadvantages of `git fetch --prune`
 tag: git, shell
 author: You
