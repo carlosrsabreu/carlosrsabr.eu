@@ -1,0 +1,89 @@
+---
+title: Why you should use `git fetch --prune`
+date: 2025/02/20
+description: Advantages and disadvantages of `git fetch --prune`
+tag: git, shell
+author: You
+---
+
+# Why you should use `git fetch --prune`
+
+Git is an essential tool for version control, but repositories (or repos) can become cluttered with outdated remote branches over time. Can you imagine fetching dozens of repos, working on them for years, and accumulating copies of all those working branches that were eventually merged into `develop` or `master` and no longer exist on the remote? How much space is this occupying on your disk?
+
+When branches are deleted from the remote repository (or repo), they are not automatically removed from your local copy unless explicitly told to do so. This can lead to confusion, unnecessary data, and potential mistakes when working with outdated branch names.
+
+This is where `git fetch --prune` comes in. This command not only fetches updates from the remote repo but also removes any references to remote branches that no longer exist on your local machine. Using it regularly ensures that your local repo remains clean and up to date.
+
+## Advantages of `git fetch --prune`
+
+### 1. Keeps your repo clean
+
+When remote branches are deleted, they remain in your local Git reference unless pruned. Running `git fetch --prune` removes these obsolete references, reducing clutter.
+
+### 2. Prevents mistakes
+
+Without pruning, you might accidentally check out or rebase onto a deleted branch. Regular pruning avoids this confusion.
+
+### 3. Improves performance
+
+Git operations that involve listing branches (e.g., `git branch -r`) run faster when the repo is not filled with stale remote branches.
+
+## Disadvantages of `git fetch --prune`
+
+### 1. Accidental loss of remote tracking branches
+
+If a branch is deleted on the remote by mistake, running `git fetch --prune` will remove its reference locally as well.
+
+### 2. No Recovery for Pruned Branches
+
+Once a branch reference is pruned, it is permanently removed from your local machine. If you still need it, you must recreate it manually.
+
+### 3. Requires Manual Execution (Unless Automated)
+
+`git fetch --prune` is not the default behaviour of git fetch, so users need to remember to run it manually or configure Git to always prune.
+
+## How to use `git fetch --prune`
+
+### Pruning a single repo
+
+To prune stale remote branches in a single repo, navigate to the project folder and run:
+
+```
+cd /path/to/your/repo
+git fetch --prune
+```
+
+### Pruning all git repos in a folder
+
+If you have multiple Git repos under a specific folder and want to prune all of them, use the following command:
+
+```
+find /path/to/folder -type d -name ".git" -execdir git fetch --prune \;
+```
+
+This will locate all `.git` directories and execute `git fetch --prune` in each repo.
+
+Alternatively, using a loop:
+
+```
+for repo in /path/to/folder/*/.git; do
+  if [ -d "$repo" ]; then
+    echo "Fetching in ${repo%/.git}"
+    (cd "${repo%/.git}" && git fetch --prune)
+  fi
+done
+```
+
+To automate pruning with every pull and avoid manual execution, run `git config --global fetch.prune true`. This ensures that deleted branches are cleaned up every time you pull.
+
+If you'd like to know more about shell scripting, you can read more [here](/posts/shell-scripting-basics)
+
+## Conclusion
+
+Using `git fetch --prune` is a simple yet effective way to keep your repos clean and free from outdated branches. It improves performance, reduces confusion, and helps teams work more efficiently. While it has some minor risks, these can be mitigated with good branch management practices.
+
+If you regularly work with Git, consider making `git fetch --prune` a part of your workflow — you’ll appreciate the cleaner, more organized experience.
+
+**Important note**: do not forget to clean some `node_modules` folders on older projects, as they can easily took several megabytes!
+
+And that's it! Hope you enjoy it!
