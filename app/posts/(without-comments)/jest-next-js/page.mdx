@@ -2,11 +2,9 @@
 title: Next.js with React Testing Library, Jest & Typescript
 date: 2024/05/18
 description: How to add Jest with React Testing Library to a Next.js project
-tag: unit testing, web development
+tags: [unit testing, web development]
 author: You
 ---
-
-# Next.js with React Testing Library, Jest & Typescript
 
 ## Introduction
 
@@ -24,7 +22,7 @@ In your existing project (or, if you don't have one, you can use the command `np
 
 After installing the dependencies, add a test script to the `package.json` file:
 
-```
+```json showLineNumbers
 {
   "scripts": {
     "test": "jest"
@@ -34,7 +32,7 @@ After installing the dependencies, add a test script to the `package.json` file:
 
 Next, create a `jest.config.ts` file in your project's root directory with the following content:
 
-```
+```ts showLineNumbers
 import nextJest from 'next/jest'
 
 const createJestConfig = nextJest({
@@ -62,17 +60,19 @@ module.exports = createJestConfig(config)
 
 Then, create a `jest.setup.ts` file in your project's root directory with the following content:
 
-```
+```ts showLineNumbers
 import '@testing-library/jest-dom/extend-expect'
 ```
 
 If you're using ESLint, add some configuration to help during development by installing the following dependencies:
 
-`npm i -D eslint-plugin-jest-dom eslint-plugin-testing-library`
+```shell
+npm i -D eslint-plugin-jest-dom eslint-plugin-testing-library
+```
 
 Then, update your `.eslintrc.json` file:
 
-```
+```json showLineNumbers
 {
   "extends": ["plugin:testing-library/react", "plugin:jest-dom/recommended"]
 }
@@ -84,7 +84,7 @@ Now you're ready to start writing your unit tests!
 
 Let's create a simple `Button.tsx` component:
 
-```
+```ts showLineNumbers
 import { forwardRef } from 'react'
 
 type ButtonProps = {
@@ -111,7 +111,7 @@ Button.displayName = 'Button'
 
 And then, create a simple test for it:
 
-```
+```ts showLineNumbers
 import { render, screen } from '@testing-library/react'
 import { Button } from './Button'
 
