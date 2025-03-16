@@ -1,10 +1,13 @@
 import type { Metadata } from 'next'
-import { Footer, Layout, Navbar, ThemeSwitch } from 'nextra-theme-blog'
+import { Layout, ThemeSwitch } from 'nextra-theme-blog'
 import { Head, Search } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import 'nextra-theme-blog/style.css'
 import '../styles/main.css'
+import { Navbar } from './_components/Navbar'
+import { FiTwitter, FiInstagram, FiGithub, FiMail } from 'react-icons/fi'
+import { Footer } from './_components/Footer'
 
 export const metadata: Metadata = {
   title: 'Carlos Silva Abreu',
@@ -47,12 +50,7 @@ export default async function RootLayout({ children }) {
             <ThemeSwitch />
           </Navbar>
           {children}
-          <Footer>
-            {new Date().getFullYear()} © Carlos Silva Abreu
-            <a href="/rss.xml" style={{ float: 'right' }}>
-              RSS
-            </a>
-          </Footer>
+          <Footer />
         </Layout>
       </body>
     </html>
