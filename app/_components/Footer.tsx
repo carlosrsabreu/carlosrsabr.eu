@@ -11,7 +11,7 @@ const socialMedia = [
     url: 'https://instagram.com/carlosrsabreu',
     Icon: <FiInstagram />
   },
-  { id: 'github', url: 'https:github.com/carlosrsabreu', Icon: <FiGithub /> },
+  { id: 'github', url: 'https://github.com/carlosrsabreu', Icon: <FiGithub /> },
   { id: 'email', url: 'mailto:carlosrsabreu@gmail.com', Icon: <FiMail /> }
 ]
 
