@@ -2,11 +2,9 @@
 title: Why you should use `git fetch --prune`
 date: 2025/02/20
 description: Advantages and disadvantages of `git fetch --prune`
-tag: git, shell
+tags: [git development, shell, scm]
 author: You
 ---
-
-# Why you should use `git fetch --prune`
 
 Git is an essential tool for version control, but repositories (or repos) can become cluttered with outdated remote branches over time. Can you imagine fetching dozens of repos, working on them for years, and accumulating copies of all those working branches that were eventually merged into `develop` or `master` and no longer exist on the remote? How much space is this occupying on your disk?
 
@@ -48,7 +46,7 @@ Once a branch reference is pruned, it is permanently removed from your local mac
 
 To prune stale remote branches in a single repo, navigate to the project folder and run:
 
-```
+```shell
 cd /path/to/your/repo
 git fetch --prune
 ```
@@ -57,7 +55,7 @@ git fetch --prune
 
 If you have multiple Git repos under a specific folder and want to prune all of them, use the following command:
 
-```
+```shell
 find /path/to/folder -type d -name ".git" -execdir git fetch --prune \;
 ```
 
@@ -65,7 +63,7 @@ This will locate all `.git` directories and execute `git fetch --prune` in each 
 
 Alternatively, using a loop:
 
-```
+```shell showLineNumbers
 for repo in /path/to/folder/*/.git; do
   if [ -d "$repo" ]; then
     echo "Fetching in ${repo%/.git}"

@@ -68,7 +68,7 @@ img.next-image {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: end;
+  align-items: flex-end;
   -webkit-align-items: baseline;
   gap: 3rem;
 }

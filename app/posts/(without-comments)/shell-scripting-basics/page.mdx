@@ -2,11 +2,9 @@
 title: Shell Scripting - Intro
 date: 2022/01/08
 description: Intro to Linux shell scripting
-tag: shell, scripting
+tags: [shell, scripting]
 author: You
 ---
-
-# Shell Scripting - Intro
 
 ## What is a shell script?
 
@@ -18,7 +16,7 @@ Every shell script file has the extension `*.sh`, and you can create it using an
 
 Imagine that you want to create the first shell scripting file. Making sure you have _nano_ installed, let's run the following command to start editing the file -> `nano day1.sh`:
 
-```
+```shell filename="day1.sh" showLineNumbers
 #!/bin/bash
 echo "The first steps into shell scripting"
 ```
@@ -48,7 +46,7 @@ Let's dive into more details, starting with simple commands.
 
 Let's now start creating a second file to start mmanipulatingwith variables, running this command -> `nano day2.sh` :
 
-```
+```shell filename="day2.sh" showLineNumbers
 #!/bin/bash
 SKILL="shell scripting"
 echo "I'm getting better at ${SKILL}! Yeahhh!"
@@ -79,7 +77,7 @@ Very simple, right? Note that you don't need to specify its type, you simply nee
 - By convention, and since they are case sensitive, variable names are in UPPERCASE. However, they can be also written in lowercase, camelCase, PascalCase or snake_case, **but not** in kebab-case.
 
 - To reassign the value of a variable, just write it again with the desired value:
-  ```
+  ```shell showLineNumbers
   #!/bin/bash
   SKILL="shell scripting"
   echo "I'm getting better at ${SKILL}! Yeahhh!"
@@ -91,7 +89,7 @@ Very simple, right? Note that you don't need to specify its type, you simply nee
 
 To write a comment in a shell scripting file, just write a `#` with the desired comment. When executed, the script will ignore this line of code -the shebang is the only exception.
 
-```
+```shell showLineNumbers
 #!/bin/bash
 
 # The following line will print a string
@@ -104,7 +102,7 @@ Don't forget to use blank lines to improve code readability.
 
 Imagine you want a script that prints some information about the system. That's what we'll do in the following script. Also, you'll learn some more commands.
 
-```
+```shell showLineNumbers
 #!/bin/bash
 
 # This script displays information about the system on which it is executed.
@@ -133,7 +131,7 @@ echo "End of the script file."
 
 Let's learn how to execute an `if` statement in a script file. This one will output if you are the root user or not. Let's call it `is-root-user.sh`.
 
-```
+```shell filename="is-root-user.sh" showLineNumbers
 #!/bin/bash
 
 # Determine if the user executing this script is the root user or not.
