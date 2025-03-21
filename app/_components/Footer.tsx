@@ -17,7 +17,7 @@ const socialMedia = [
 
 const Footer = () => {
   return (
-    <div
+    <footer
       className="x:mt-32 x:flex x:justify-between"
       data-pagefind-ignore="all"
     >
@@ -42,7 +42,7 @@ const Footer = () => {
         ))}
         <a href="/rss.xml">RSS</a>
       </div>
-    </div>
+    </footer>
   )
 }
 

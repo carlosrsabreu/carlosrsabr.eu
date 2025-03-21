@@ -7,16 +7,7 @@ export const metadata = {
 export default async function IndexPage() {
   return (
     <div data-pagefind-ignore="all">
-      <h1
-        style={{
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text',
-          backgroundImage: 'linear-gradient(90deg,#7928CA,#FF0080)'
-        }}
-      >
-        {metadata.title}
-      </h1>
+      <h1>{metadata.title}</h1>
       <div
         className="not-prose"
         style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}

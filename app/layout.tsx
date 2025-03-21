@@ -1,13 +1,13 @@
 import type { Metadata } from 'next'
-import { Layout, ThemeSwitch } from 'nextra-theme-blog'
+import { ThemeSwitch } from 'nextra-theme-blog'
 import { Head, Search } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import 'nextra-theme-blog/style.css'
 import '../styles/main.css'
 import { Navbar } from './_components/Navbar'
-import { FiTwitter, FiInstagram, FiGithub, FiMail } from 'react-icons/fi'
 import { Footer } from './_components/Footer'
+import { Layout } from './_components/Layout'
 
 export const metadata: Metadata = {
   title: 'Carlos Silva Abreu',
