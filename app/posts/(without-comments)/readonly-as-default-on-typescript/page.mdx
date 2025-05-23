@@ -1,0 +1,47 @@
+---
+title: Why `Readonly` in TypeScript Should Be Your Default
+date: 2025/05/23
+description: One Line of TypeScript That Catches What Code Review May Won't
+tags: [web development, typescript]
+author: You
+---
+
+In TypeScript, the `Readonly` utility type can quietly save you from hard-to-diagnose bugs. Let's understand how:
+
+For demonstration purposes, let's suppose we have a shared `User` object across multiple modules:
+
+```ts
+type User = {
+  name: string
+  age: number
+}
+
+const user: User = {
+  name: 'Carlos',
+  age: 18
+}
+```
+
+At some point, a developer unknowingly modified the user name when developing a new screen and didn't notice it:
+
+```ts
+user.name = 'Roberto' // we get no error
+```
+
+This change led to unexpected behavior in parts of the app relying on the original value. And things like this can be avoided using `Readonly` utility type:
+
+```ts
+type User = Readonly<{
+  name: string
+  age: number
+}>
+
+const user: User = {
+  name: 'Carlos',
+  age: 18
+}
+
+user.name = 'Roberto' // Error: Cannot assign to 'name' because it is a read-only property.
+```
+
+With `Readonly`, the compiler stopped us from making accidental mutations. This simple change makes the `User` type safe by design. When data is meant to stay constant, let the compiler protect it.
