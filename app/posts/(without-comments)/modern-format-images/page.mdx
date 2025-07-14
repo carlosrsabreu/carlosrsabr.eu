@@ -1,0 +1,129 @@
+---
+title: What image extensions should I choose and how to convert them
+date: 2025/07/14
+description: .avif and .webp for the win
+tags: [shell, web development]
+author: You
+---
+
+_**Disclaimer**: I hope you find this article boring and that you already convert images to `.avif` and `.webp` format without using online converters. Anyway, I'm leaving this blog post here :\)_
+
+If you're building for the web and still converting images using random online converters, then you're not doing it in the most efficient way. Modern image formats like `.avif` and `.webp` can drastically reduce file sizes without sacrificing quality, and they’re supported on most browsers.
+
+The real problem? Converting to them shouldn’t be annoying. Yet most tools make it exactly that.
+
+---
+
+## Why `.avif` should be your default format
+
+`.avif` is the most efficient image format currently available for the web. Compared to `.jpeg` or even `.webp`, it produces smaller files at better quality. It's ideal for websites aiming for performance without visual compromises.
+
+### Advantages of `.avif`:
+
+- **Smaller file sizes** (even compared to `.webp`)
+- **Better image quality**, especially at lower bitrates
+- **Transparency support** (like `.png`)
+- **HDR and 10-bit color support**
+- **Modern browser compatibility** (Chrome, Edge, Firefox, Safari, Opera)
+
+Mozilla summarizes all the pros here[^1]. The main downside? **Encoding is slower** than `.webp` or `.jpeg` and support is not yet comprehensive (and has little historical depth) you should provide a fallback (which I recommend `.webp`). But for most web workflows, that’s not a dealbreaker — it’s a one-time step.
+
+---
+
+## Use `.webp` as a fallback
+
+Not all browsers support `.avif` yet and that’s where `.webp` comes in. It still offers great compression, loads fast, and is much better than traditional formats like `.jpeg` or `.png` (~30% smaller or more, depending on the image) [^2].
+
+In practice, you should serve both:
+
+```html
+<picture>
+  <source srcset="image.avif" type="image/avif" />
+  <source srcset="image.webp" type="image/webp" />
+  <img src="image.jpg" alt="example image" />
+</picture>
+```
+
+This way, browsers that support `.avif` will use it. Those that don’t will fall back to `.webp` , and if needed, to `.jpeg` as a last resort.
+
+---
+
+## Please: STOP using online converters
+
+Let’s be honest: online image converters are a pain.
+
+- Sketchy UI full of ads;
+- Manual upload/download loops;
+- Little to no control over quality settings;
+- Risk of uploading sensitive assets to unknown servers.
+
+If you have more than one or two images to process, this quickly becomes a nightmare.
+
+---
+
+## Convert images locally (without losing time)
+
+To save time and gain full control over image quality and automation, use command-line tools like `cwebp` (for `.webp`) and `avifenc` (for `.avif`).
+
+### Step 1: Install `cwebp` and `libavif` with Homebrew
+
+```bash
+brew install webp
+brew install libavif
+```
+
+### Step 2: Convert a single image
+
+If you want to convert to `.webp` format, using the `cwebp` library:
+
+```bash
+cwebp -q 75 image.png -o output.webp
+```
+
+Or, if you want to convert to `.avif` format, using the `libavif` library:
+
+```bash
+avifenc -q 75 image.png output.avif
+```
+
+- The `-q` flag controls quality (0 to 100).
+- The higher the number, the better the quality (and larger the file).
+- Play with the number to find your ideal balance.
+
+### Step 3: Batch convert a whole folder
+
+Here’s a simple shell script you can add to any project to batch-convert images:
+
+```bash
+#!/bin/bash
+
+mkdir -p output
+
+for file in ./*.{png,jpg,jpeg}; do
+  filename=$(basename "$file")
+  avifenc -q 75 "$file" "output/${filename%.*}.avif"
+  cwebp -q 75 "$file" -o "output/${filename%.*}.webp"
+done
+```
+
+This script will:
+
+- Convert all `.png`, `.jpg`, and `.jpeg` files in the current directory
+- Output both `.avif` and `.webp` versions, with a quality setting of 75
+- Store everything in an `output/` folder
+
+You can plug this into your build process or run it manually before deploying new assets.
+
+### In summary
+
+- Use **`.avif`** for best performance.
+- Fallback to **`.webp`** for older browsers.
+- Avoid online converters and batch your conversions locally.
+- Automate wherever possible; it's easy and way more efficient
+
+With `libavif` and `cwebp`, you take full control of your image conversion process. It's fast, offline, and works beautifully for both single images and full folders.
+
+If you’ve been putting off using `.avif` and `.webp` because of the conversion hassle — now you have no excuse. Your images (and your website visitors) will thank you.
+
+[^1]: https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Image_types#avif_image
+[^2]: https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Image_types#webp_image
