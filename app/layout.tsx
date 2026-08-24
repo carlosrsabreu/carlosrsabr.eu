@@ -40,10 +40,12 @@ const GOOGLE_ANALYTICS_ID = process.env['NEXT_PUBLIC_GOOGLE_ANALYTICS']
 
 export default async function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <Head backgroundColor={{ dark: '#0f172a', light: '#fefce8' }} />
-      <GoogleAnalytics gaId={GOOGLE_ANALYTICS_ID!} />
       <body>
+        {GOOGLE_ANALYTICS_ID ? (
+          <GoogleAnalytics gaId={GOOGLE_ANALYTICS_ID} />
+        ) : null}
         <Layout>
           <Navbar pageMap={await getPageMap()}>
             <Search placeholder="Search..." />

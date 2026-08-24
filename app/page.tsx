@@ -13,29 +13,31 @@ export default async function IndexPage() {
         style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}
       >
         <p>
-          Carlos is a Blockchain enthusiast and Typescript adventurer who
-          previously served a company specialising in the development of banking
-          software. He's also running a Google Developer Group's chapter in
-          Madeira island -&gt;{' '}
+          Carlos is a blockchain enthusiast and TypeScript adventurer. He is a
+          frontend developer at{' '}
+          <Link href="https://blip.pt" style={{ textDecoration: 'underline' }}>
+            Blip
+          </Link>{' '}
+          today, after joining the team at{' '}
+          <Link
+            href="https://yacooba.com"
+            style={{ textDecoration: 'underline' }}
+          >
+            Yacooba
+          </Link>{' '}
+          — a blockchain-based shared-economy platform for event promoters and
+          travellers — and getting his start at a banking software company.
+        </p>
+
+        <p>
+          On the side, he runs{' '}
           <Link
             href="https://gdgmadeira.xyz"
             style={{ textDecoration: 'underline' }}
           >
             GDG Madeira
           </Link>
-          .
-        </p>
-
-        <p>
-          Currently working as a frontend developer at{' '}
-          <Link
-            href="https://yacooba.com"
-            style={{ textDecoration: 'underline' }}
-          >
-            Yacooba
-          </Link>
-          , a shared economy community platform for event promoters and
-          travellers using blockchain technology.
+          , the island&apos;s Google Developer Group chapter.
         </p>
 
         <b>
