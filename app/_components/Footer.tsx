@@ -1,43 +1,19 @@
-import { FiTwitter, FiInstagram, FiGithub, FiMail } from 'react-icons/fi'
-
-const socialMedia = [
-  {
-    id: 'twitter',
-    url: 'https://twitter.com/carlosrsabreu',
-    Icon: <FiTwitter />
-  },
-  {
-    id: 'instagram',
-    url: 'https://instagram.com/carlosrsabreu',
-    Icon: <FiInstagram />
-  },
-  { id: 'github', url: 'https://github.com/carlosrsabreu', Icon: <FiGithub /> },
-  { id: 'email', url: 'mailto:carlosrsabreu@gmail.com', Icon: <FiMail /> }
-]
+import { socialLinks } from '../_data/social'
 
 const Footer = () => {
   return (
-    <footer
-      className="x:mt-32 x:flex x:justify-between"
-      data-pagefind-ignore="all"
-    >
+    <footer className="site-footer" data-pagefind-ignore="all">
       {new Date().getFullYear()} © Carlos Silva Abreu
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'flex-end',
-          gap: '14px'
-        }}
-      >
-        {socialMedia.map(({ id, url, Icon }) => (
+      <div className="site-footer__social">
+        {socialLinks.map(({ id, label, href, Icon }) => (
           <a
             key={id}
-            href={url}
+            href={href}
             target="_blank"
             rel="noopener noreferrer"
-            style={{ alignContent: 'center' }}
+            aria-label={label}
           >
-            {Icon}
+            <Icon aria-hidden />
           </a>
         ))}
         <a href="/rss.xml">RSS</a>
