@@ -1,18 +1,10 @@
 import { useMDXComponents as useMDX } from 'nextra-theme-blog'
+import type { MDXComponents } from 'mdx/types'
 
+// Nextra's `useMDXComponents` is a factory called at module scope, not a React
+// hook, despite the `use` name — the rules-of-hooks match here is a false positive.
+// eslint-disable-next-line react-hooks/rules-of-hooks
 const blogComponents = useMDX({
-  h1: ({ children }) => (
-    <h1
-      style={{
-        WebkitBackgroundClip: 'text',
-        WebkitTextFillColor: 'transparent',
-        backgroundClip: 'text',
-        backgroundImage: 'linear-gradient(90deg,#7928CA,#FF0080)'
-      }}
-    >
-      {children}
-    </h1>
-  ),
   DateFormatter: ({ date }) =>
     `Last updated at ${date.toLocaleDateString('en', {
       day: 'numeric',
@@ -21,7 +13,7 @@ const blogComponents = useMDX({
     })}`
 })
 
-export function useMDXComponents(components) {
+export function useMDXComponents(components?: Readonly<MDXComponents>) {
   return {
     ...blogComponents,
     ...components
